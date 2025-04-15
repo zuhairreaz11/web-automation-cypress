@@ -1,6 +1,6 @@
 # Cypress Test Automation - Setup Guide
 
-This repository provides a basic setup for using Cypress for end-to-end testing. Follow the steps below to clone the repo, set up your environment, and start testing with Cypress.
+This repository contains a simple **Node.js** login application along with **Cypress** tests for end-to-end testing.
 
 ## Prerequisites
 
@@ -12,13 +12,15 @@ Before you begin, ensure that the following are installed on your machine:
 
 ## Getting Started
 
+Follow these steps to get up and running with both the Node.js app and Cypress tests.
+
 ### 1. Clone the Repository
 
 First, clone the repository to your local machine:
 
 ```bash
-git clone https://github.com/yourusername/my-cypress-project.git
-cd my-cypress-project
+git clone https://github.com/zuhairreaz11/web-automation-cypress.git
+cd web-automation-cypress
 ```
 
 ### 2. Install Dependencies
@@ -28,27 +30,58 @@ Once inside your project folder, install the necessary dependencies:
 npm install
 ```
 
-### 3. Open Cypress
-Once inside your project folder, install the necessary dependencies:
+### 3. Run the Node.js Application Locally
+To start the Node.js app locally, run the following command:
 
 ```bash
-npx cypress open
+node node-app/app.js
 ```
 
-### 4. Create or Modify Tests
-To create new tests, add them to the cypress/integration folder. Here's an example of a simple test you can create:
+### 4.  Running Cypress Tests
+You can run the Cypress tests either in headless mode or with the Cypress Test Runner UI.
 
-```bash
-npx cypress open
-```
-### 5. Running Tests in Headless Mode (Optional)
-If you'd like to run tests without the Cypress Test Runner GUI (headlessly), you can use the following command:
+**Option 1: Run Cypress Tests in Headless Mode**
+
+To run the tests without the UI, execute:
 
 ```bash
 npx cypress run
 ```
 
-### 6. Configuration
+**Option 2: Open Cypress Test Runner UI**
+
+To run the tests without the UI, execute:
+
+```bash
+npx cypress open 
+```
+
+
+### 7. Troubleshooting
+
+#### 1.Ensure you are using a compatible version of Node.js
+Cypress supports Node.js version 16.x or later.
+
+#### 2. Check for dependency issues
+If you encounter issues with dependencies, try deleting the node_modules folder and package-lock.json file, then run npm install again.
+
+#### 3. For more troubleshooting help, refer to Cypress documentation
+
+Cypress Troubleshooting Guide
+
+### Additional Information 
+#### 1. How to Create or Modify Tests
+To create new tests, add them to the `cypress/e2e` folder. Then create a file like  `spec-name.cy.js`
+
+```bash
+describe('Test Name', () => {
+  it('passes', () => {
+    cy.visit('https://example.cypress.io')
+  })
+})
+```
+
+#### 2. How to set-up a Configuration File
 You can configure Cypress settings by modifying the cypress.json file. For example, you can set the base URL for your application, viewport size, timeouts, and more.
 
 Example cypress.json file:
@@ -60,24 +93,4 @@ Example cypress.json file:
   "viewportHeight": 720
 }
 ```
-
-### 7. Troubleshooting
-You can configure Cypress settings by modifying the cypress.json file. For example, you can set the base URL for your application, viewport size, timeouts, and more.
-
-1. Delete node_modules and reinstall:
-
-```bash
-rm -rf node_modules
-npm install
-```
-2. Ensure you are using a compatible version of Node.js (Cypress supports Node.js 16.x or later).
-
-3. Refer to Cypress documentation for detailed troubleshooting: Cypress Troubleshooting Guide.
-
-### Additional Resources
-Cypress Documentation
-
-Cypress GitHub Repository
-
-Cypress API Reference
 

@@ -3,32 +3,43 @@ name: Run Cypress Tests
 on:
   push:
     branches:
-      - main      # Trigger on push to the main branch
+      - main
   pull_request:
     branches:
-      - main      # Trigger on pull request to the main branch
+      - main
 
 jobs:
   cypress:
-    runs-on: ubuntu-latest  # Use the latest Ubuntu image for the CI environment
+    runs-on: ubuntu-latest
 
     steps:
-      # Step 1: Check out the code from the repo
+      # Step 1: Checkout the code
       - name: Checkout code
         uses: actions/checkout@v3
 
-      # Step 2: Set up Node.js and install dependencies
+      # Step 2: Set up Node.js
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '16'    # Use Node.js v16 (you can use other versions as required)
+          node-version: '16'
 
-      # Step 3: Install dependencies
+      # Step 3: Install dependencies for both the Node.js app and Cypress
       - name: Install dependencies
         run: |
           npm install
 
-      # Step 4: Run Cypress tests
+      # Step 4: Start Node.js app in the background
+      - name: Start Node.js app
+        run: |
+          nohup node node-app/app.js &  # Run the Node.js app in the background
+        env:
+          NODE_ENV: development
+
+      # Step 5: Wait for the Node.js app to start (optional)
+      - name: Wait for the server to be ready
+        run: sleep 5  # Wait for 5 seconds to ensure the Node.js app has started
+
+      # Step 6: Run Cypress tests
       - name: Run Cypress tests
         run: |
-          npx cypress run  # Run tests in headless mode
+          npx cypress run  # Run Cypress tests
