@@ -37,7 +37,7 @@ jobs:
 
       # Step 5: Wait for the Node.js app to start (optional)
       - name: Wait for the server to be ready
-        run: sleep 5  # Wait for 5 seconds to ensure the Node.js app has started
+        run: sleep 10  # Wait for 5 seconds to ensure the Node.js app has started
 
       # Step 6: Run Cypress tests
       - name: Run Cypress tests
