@@ -31,7 +31,7 @@ jobs:
       # Step 4: Install Cypress dependencies
       - name: Install Cypress
         run: |
-          cd node-app && npm install cypress --save-dev  # Install Cypress in the node-app directory
+          npm install cypress --save-dev 
 
       # Step 5: Start Node.js app in the background
       - name: Start Node.js app
