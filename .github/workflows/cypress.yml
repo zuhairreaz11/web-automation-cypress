@@ -23,23 +23,24 @@ jobs:
         with:
           node-version: '16'
 
-      # Step 3: Install dependencies for both the Node.js app and Cypress
+      # Step 3: Install dependencies in the correct directory
       - name: Install dependencies
         run: |
-          npm install
+          cd node-app && npm install  # Navigate to node-app and install dependencies
 
       # Step 4: Start Node.js app in the background
       - name: Start Node.js app
         run: |
-          nohup node node-app/app.js &  # Run the Node.js app in the background
+          cd node-app && nohup node app.js &  # Start the app in the background from the node-app directory
         env:
           NODE_ENV: development
 
-      # Step 5: Wait for the Node.js app to start (optional)
+      # Step 5: Wait for the server to be ready (Optional: Increase time if necessary)
       - name: Wait for the server to be ready
-        run: sleep 10  # Wait for 5 seconds to ensure the Node.js app has started
+        run: |
+          sleep 10  # Wait for 10 seconds to ensure the Node.js app has started
 
       # Step 6: Run Cypress tests
       - name: Run Cypress tests
         run: |
-          npx cypress run  # Run Cypress tests
+          npx cypress run
