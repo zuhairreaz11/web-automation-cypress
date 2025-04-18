@@ -48,4 +48,4 @@ jobs:
       # Step 7: Run Cypress tests
       - name: Run Cypress tests
         run: |
-          cd node-app && npx cypress run  # Run Cypress tests
+          npx cypress run  # Run Cypress tests
